@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Trabajos - Materas</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+
+    <!-- Registrar el Service Worker -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(() => console.log("Service Worker registrado"));
+        }
+    </script>
+
+</head>
+
+<body>
+    <h2>📋 Registro de Trabajos</h2>
+
+    <label for="ref">Referencia:</label>
+    <select id="ref"></select>
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad">
+
+    <label for="proceso">Proceso:</label>
+    <select id="proceso">
+        <option value="pulido">Pulido</option>
+        <option value="esmaltado">Esmaltado</option>
+        <option value="vaciado">Vaciado</option>
+    </select>
+
+    <label for="dia">Día:</label>
+    <select id="dia">
+        <option value="Lunes">Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miércoles">Miércoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+        <option value="Sábado">Sábado</option>
+        <option value="Domingo">Domingo</option>
+    </select>
+
+    <button onclick="registrar()">Registrar</button>
+
+    <table id="tabla">
+        <thead>
+            <tr>
+                <th>Referencia</th>
+                <th>Cantidad</th>
+                <th>Proceso</th>
+                <th>Día</th>
+                <th>Valor Unitario</th>
+                <th>Total</th>
+                <td>
+                    <button onclick="eliminarRegistro('${docId}')">🗑️</button>
+                </td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="total">💰 Total generado: $0</div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
